@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Data Medis Pasien</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
+    <link rel="stylesheet" href="halaman2.css" />
+  </head>
+  <body>
+    <section class="container">
+      <header><h2>Data Medis Pasien</h2></header> 
+      
+      <form action="#" class="form" id="medical">
+        <div class="input-box">
+          <label>Identitas Laporan Medis</label>
+          <input id="medicalId" type="text" placeholder="Masukkan Identitas Laporan Medis" required />
+        </div>
+
+        <div class="column">
+          <div class="input-box">
+            <label>Berat Badan</label>
+            <input id="weight" type="number" placeholder="Masukkan Berat Badan" required />
+          </div>
+          <div class="input-box">
+            <label>Tinggi Badan</label>
+            <input id="height" type="number" placeholder="Masukkan Tinggi Badan" required />
+          </div>
+        </div>
+
+        <div class="input-box">
+          <label>Nama Penyakit</label>
+          <input id="diseaseName" type="text" placeholder="Masukkan Nama Penyakit" required />
+        </div>
+
+        <div class="column">
+          <div class="input-box">
+            <label>Golongan Darah</label>
+            <input id="bloodType" type="text" placeholder="Masukkan Golongan Darah" required />
+          </div>
+          <div class="input-box">
+            <label>Awal Sakit</label>
+            <input id="onsetDate" type="date" placeholder="Kapan Awal Sakit" required />
+          </div>
+        </div>
+
+        <div class="input-box">
+          <label>Deskripsi Penyakit</label>
+          <input id="diseaseDescription" type="text" placeholder="Masukkan Deskripsi Penyakit" required />
+        </div>
+
+        <div class="form-group submit-btn">
+          <input onclick="submitMedical(event)" type="submit" value="Submit">
+        </div>
+      </form>
+    </section>
+    <script>
+      // Wait for the page to load before executing JavaScript
+      document.addEventListener('DOMContentLoaded', async function () {
+        // Connect to the Ethereum network using Web3.js
+        if (window.ethereum) {
+          window.web3 = new Web3(ethereum);
+          try {
+            // Request account access if needed
+            await ethereum.enable();
+          } catch (error) {
+            // User denied account access
+            console.error("User denied account access");
+          }
+        } else if (window.web3) {
+          // Legacy dapp browsers
+          window.web3 = new Web3(web3.currentProvider);
+        } else {
+          // Non-dapp browsers
+          console.error("Non-Ethereum browser detected. You should consider trying MetaMask!");
+        }
+
+        // Replace with your contract address and ABI
+        const contractAddress = '0x90D18E139DF30EFc495Cd266795826CFBAF5C2Db';
+        const contractABI = [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "patient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "identity",
+          "type": "string"
+        }
+      ],
+      "name": "MedicalRecordAdded",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "patientRecords",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "identity",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "weight",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "height",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "diseaseName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "bloodType",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "onsetDate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "diseaseDescription",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_identity",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_weight",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_height",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_diseaseName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_bloodType",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_onsetDate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_diseaseDescription",
+          "type": "string"
+        }
+      ],
+      "name": "addMedicalRecord",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ];
+        const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+        // Function to handle form submission
+        async function submitMedical(event) {
+          event.preventDefault();
+
+          // Get values from the form
+          const medicalId = document.getElementById("medicalId").value;
+          const weight = document.getElementById("weight").value;
+          const height = document.getElementById("height").value;
+          const diseaseName = document.getElementById("diseaseName").value;
+          const bloodType = document.getElementById("bloodType").value;
+          const onsetDate = Date.parse(document.getElementById("onsetDate").value) / 1000;
+          const diseaseDescription = document.getElementById("diseaseDescription").value;
+
+          // Send a transaction to the smart contract
+          try {
+            const accounts = await web3.eth.getAccounts();
+            await contract.methods.addMedicalRecord(medicalId, weight, height, diseaseName, bloodType, onsetDate, diseaseDescription).send({
+              from: accounts[0]
+            });
+            alert("Data Medis Tersimpan!");
+          } catch (error) {
+            alert("Ada error, cek console!");
+            console.log("Transaction Error:", error);
+          }
+        }
+        document.getElementById('medical').addEventListener('submit', submitMedical);
+      });
+    </script>
+  </body>
+</html>

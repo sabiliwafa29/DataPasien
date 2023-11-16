@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Pasien</title>
+
+    <link rel="stylesheet" href="halaman1.css">
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  </head>
+  <body>  
+    <form id="patient">
+      <h2>Daftar Pasien</h2>
+      <div class="form-group fullname">
+        <label for="fullname">Id Pasien</label>
+        <input type="text" id="idpasien" placeholder="Masukkan Id Pasien">
+      </div>
+      <div class="form-group fullname">
+        <label for="fullname">No Telefon</label>
+        <input type="text" id="telfon" placeholder="Masukkan No Telefon">
+      </div>
+      <div class="form-group email">
+        <label for="email">Alamat Email</label>
+        <input type="text" id="email" placeholder="Masukkan Alamat Email">
+      </div>
+      <div class="form-group password">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Masukkan Password">
+        <i id="pass-toggle-btn" class="fa-solid fa-eye"></i>
+      </div>
+      <div class="form-group date">
+        <label for="date">Tanggal Lahir</label>
+        <input type="date" id="tanggal" placeholder="Select your date">
+      </div>
+      <div class="form-group fullname">
+        <label for="fullname">Alamat Tempat Tinggal</label>
+        <input type="text" id="alamat" placeholder="Masukkan Alamat">
+      </div>
+      <div class="form-group gender">
+        <label for="gender">Jenis Kelamin</label>
+        <select id="gender">
+          <option value="" selected disabled>Pilih Jenis Kelaminmu</option>
+          <option value="Male">Laki - Laki</option>
+          <option value="Female">Perempuan</option>
+        </select>
+      </div>
+      <div class="form-group submit-btn">
+        <input onclick="submitPatient(event)" type="submit" value="Submit">
+      </div>
+    </form>
+    <script>
+      // Wait for the page to load before executing JavaScript
+      document.addEventListener('DOMContentLoaded', async function () {
+        // Connect to the Ethereum network using Web3.js
+        if (window.ethereum) {
+          window.web3 = new Web3(ethereum);
+          try {
+            // Request account access if needed
+            await ethereum.enable();
+          } catch (error) {
+            // User denied account access
+            console.error("User denied account access");
+          }
+        } else if (window.web3) {
+          // Legacy dapp browsers
+          window.web3 = new Web3(web3.currentProvider);
+        } else {
+          // Non-dapp browsers
+          console.error("Non-Ethereum browser detected. You should consider trying MetaMask!");
+        }
+
+        // Replace with your contract address and ABI
+        const contractAddress = "0xb86C3203878abDe1E21DAD7B0ddc7d1842cE9f9C";
+        const contractABI = [
+         
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "patients",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "phoneNumber",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "emailAddress",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "password",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "dateOfBirth",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "addresst",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "gender",
+              "type": "string"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "constant": true
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "phoneNumber",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "emailAddress",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "password",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "dateOfBirth",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "addresst",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "gender",
+              "type": "string"
+            }
+          ],
+          "name": "registerPatient",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "getPatientById",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "id",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "string",
+                  "name": "phoneNumber",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "emailAddress",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "password",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "dateOfBirth",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "addresst",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "gender",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct MyContract.Patient",
+              "name": "",
+              "type": "tuple"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "constant": true
+        }
+        ];
+
+        const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+        // Function to handle form submission
+        async function submitPatient(event) {
+          event.preventDefault();
+
+          // Get values from the form
+          const idPasien = document.getElementById('idpasien').value;
+          const telfon = document.getElementById('telfon').value;
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
+          const tanggal = document.getElementById('tanggal').value;
+          const alamat = document.getElementById('alamat').value;
+          const gender = document.getElementById('gender').value;
+
+          // Send a transaction to the smart contract
+          try {
+            const accounts = await web3.eth.getAccounts();
+            await contract.methods.registerPatient(idPasien, telfon, email, password, tanggal, alamat, gender).send({
+              from: accounts[0]
+            });
+
+            alert("Patient added to the blockchain!");
+          } catch (error) {
+            console.error("Error adding patient to the blockchain:", error);
+            alert("Error adding patient to the blockchain. Please check the console for details.");
+          }
+        }
+        document.getElementById('patient').addEventListener('submit', submitPatient);
+      });
+    </script>
+  </body>
+</html>
