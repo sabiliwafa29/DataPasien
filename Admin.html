@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #passwordForm {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div id="passwordForm">
+  <label for="password">Masukkan Password:</label>
+  <input type="password" id="password" />
+  <button onclick="checkPassword()">Submit</button>
+</div>
+
+<script>
+  function checkPassword() {
+    var password = document.getElementById("password").value;
+
+    // Ganti dengan password yang diinginkan
+    var correctPassword = "123";
+
+    if (password === correctPassword) {
+      window.location.href = "https://sabiliwafa29.github.io/DataPasien/Halaman2.html";
+    } else {
+      alert("Password salah. Coba lagi.");
+    }
+  }
+</script>
+
+</body>
+</html>
