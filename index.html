@@ -4,6 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <img src="Bg.png" alt="Your Logo" class="logo">
     <title>Daftar Pasien</title>
 
     <link rel="stylesheet" href="halaman1.css">
@@ -13,43 +14,50 @@
   <body>  
     <form id="patient">
       <h2>Daftar Pasien</h2>
-      <div class="form-group fullname">
-        <label for="fullname">Id Pasien</label>
-        <input type="text" id="idpasien" placeholder="Masukkan Id Pasien">
+      <div class="container">
+        <div class="form-group">
+          <div class="fullname">
+            <label for="fullname">Id Pasien</label>
+            <input type="text" id="fullname" placeholder="Masukkan Id Pasien">
+          </div>
+          <div class="number">
+            <label for="number">No Telefon</label>
+            <input type="text" id="number" placeholder="Masukkan No Telefon">
+          </div>
+          <div class="email">
+            <label for="email">Alamat Email</label>
+            <input type="text" id="email" placeholder="Masukkan Alamat Email">
+          </div>
+          <div class="password">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Masukkan Password">
+            <i id="pass-toggle-btn" class="fa-solid fa-eye"></i>
+          </div>
+        </div>
+        <div class="form-group1">
+          <div class="date">
+            <label for="date">Tanggal Lahir</label>
+            <input type="date" id="date" placeholder="Select your date">
+          </div>
+          <div class="address">
+            <label for="address">Alamat Tempat Tinggal</label>
+            <input type="text" id="address" placeholder="Masukkan Alamat">
+          </div>
+          <div class="gender">
+            <label for="gender">Jenis Kelamin</label>
+            <select id="gender">
+              <option value="" selected disabled>Pilih Jenis Kelaminmu</option>
+              <option value="Male">Laki - Laki</option>
+              <option value="Female">Perempuan</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <div class="form-group fullname">
-        <label for="fullname">No Telefon</label>
-        <input type="text" id="telfon" placeholder="Masukkan No Telefon">
-      </div>
-      <div class="form-group email">
-        <label for="email">Alamat Email</label>
-        <input type="text" id="email" placeholder="Masukkan Alamat Email">
-      </div>
-      <div class="form-group password">
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Masukkan Password">
-        <i id="pass-toggle-btn" class="fa-solid fa-eye"></i>
-      </div>
-      <div class="form-group date">
-        <label for="date">Tanggal Lahir</label>
-        <input type="date" id="tanggal" placeholder="Select your date">
-      </div>
-      <div class="form-group fullname">
-        <label for="fullname">Alamat Tempat Tinggal</label>
-        <input type="text" id="alamat" placeholder="Masukkan Alamat">
-      </div>
-      <div class="form-group gender">
-        <label for="gender">Jenis Kelamin</label>
-        <select id="gender">
-          <option value="" selected disabled>Pilih Jenis Kelaminmu</option>
-          <option value="Male">Laki - Laki</option>
-          <option value="Female">Perempuan</option>
-        </select>
-      </div>
-      <div class="form-group submit-btn">
-        <input onclick="submitPatient(event)" type="submit" value="Submit">
+      <div class="submit-btn">
+        <input type="submit" value="Submit">
       </div>
     </form>
+    
     <script>
       // Wait for the page to load before executing JavaScript
       document.addEventListener('DOMContentLoaded', async function () {

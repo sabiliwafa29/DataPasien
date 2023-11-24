@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Terbelah</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      display: flex;
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .left-side,
+    .right-side {
+      flex: 1;
+      padding: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="left-side">
+      <h2>Bagian Kiri</h2>
+      <form>
+        <label for="firstName">Nama Depan:</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Masukkan nama depan">
+
+        <label for="lastName">Nama Belakang:</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Masukkan nama belakang">
+
+        <button type="submit">Kirim</button>
+      </form>
+    </div>
+
+    <div class="right-side">
+      <h2>Bagian Kanan</h2>
+      <form>
+        <label for="firstName">Nama Depan:</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Masukkan nama depan">
+
+        <label for="lastName">Nama Belakang:</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Masukkan nama belakang">
+
+        <button type="submit">Kirim</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
