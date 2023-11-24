@@ -58,7 +58,7 @@ form .form-group1 {
   margin-bottom: 15px;
   padding-left: 30px;
 }
-#fullname, #number, #email, #password, #date, #address, #gender{
+#idpasien, #telfon, #email, #password, #tanggal, #alamat, #gender{
   border: 3px solid #35a114;
   background-position: 10px 10px;
   background-repeat: no-repeat;
