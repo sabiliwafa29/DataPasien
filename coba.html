@@ -1,87 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Form Terbelah</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f2f2f2;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retrieve Medical Record</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.3/dist/web3.min.js"></script>
+    <script>
+        const contractAddress = '0x90D18E139DF30EFc495Cd266795826CFBAF5C2Db';
+        const contractABI = [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "patient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "identity",
+          "type": "string"
+        }
+      ],
+      "name": "MedicalRecordAdded",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "patientRecords",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "identity",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "weight",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "height",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "diseaseName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "bloodType",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "onsetDate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "diseaseDescription",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_identity",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_weight",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_height",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_diseaseName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_bloodType",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_onsetDate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_diseaseDescription",
+          "type": "string"
+        }
+      ],
+      "name": "addMedicalRecord",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
+  ];
 
-    .container {
-      display: flex;
-      max-width: 800px;
-      margin: 50px auto;
-      background-color: #fff;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+        window.onload = async function () {
+            if (typeof window.ethereum !== 'undefined') {
+                window.web3 = new Web3(window.ethereum);
+                await window.ethereum.enable();
+            } else if (typeof window.web3 !== 'undefined') {
+                window.web3 = new Web3(window.web3.currentProvider);
+            } else {
+                console.error('No Ethereum provider detected. You should consider installing MetaMask.');
+            }
 
-    .left-side,
-    .right-side {
-      flex: 1;
-      padding: 10px;
-    }
+            const contract = new window.web3.eth.Contract(contractABI, contractAddress);
 
-    label {
-      display: block;
-      margin-bottom: 8px;
-    }
+            document.getElementById('retrieveButton').onclick = async function () {
+                const address = document.getElementById('addressInput').value;
+                try {
+                    const result = await contract.methods.patientRecords(address).call();
+                    console.log(result);
+                    // Display or process the result as needed
+                } catch (error) {
+                    console.error('Error retrieving data:', error);
+                }
+            };
+            function displayMedicalRecord(data) {
+                const displayContainer = document.getElementById('displayContainer');
+                displayContainer.innerHTML = ''; // Clear previous data
 
-    input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 16px;
-      box-sizing: border-box;
-    }
-
-    button {
-      background-color: #4caf50;
-      color: #fff;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-  </style>
+                const keys = Object.keys(data);
+                for (const key of keys) {
+                    const paragraph = document.createElement('p');
+                    paragraph.innerHTML = `<strong>${key}:</strong> ${data[key]}`;
+                    displayContainer.appendChild(paragraph);
+                }
+            }
+        };
+    </script>
 </head>
+
 <body>
+    <h2>Retrieve Medical Record</h2>
+    <label for="addressInput">Enter Patient Address:</label>
+    <input type="text" id="addressInput" placeholder="Ethereum Address">
+    <button id="retrieveButton">Retrieve Medical Record</button>
 
-  <div class="container">
-    <div class="left-side">
-      <h2>Bagian Kiri</h2>
-      <form>
-        <label for="firstName">Nama Depan:</label>
-        <input type="text" id="firstName" name="firstName" placeholder="Masukkan nama depan">
-
-        <label for="lastName">Nama Belakang:</label>
-        <input type="text" id="lastName" name="lastName" placeholder="Masukkan nama belakang">
-
-        <button type="submit">Kirim</button>
-      </form>
-    </div>
-
-    <div class="right-side">
-      <h2>Bagian Kanan</h2>
-      <form>
-        <label for="firstName">Nama Depan:</label>
-        <input type="text" id="firstName" name="firstName" placeholder="Masukkan nama depan">
-
-        <label for="lastName">Nama Belakang:</label>
-        <input type="text" id="lastName" name="lastName" placeholder="Masukkan nama belakang">
-
-        <button type="submit">Kirim</button>
-      </form>
-    </div>
+    <div id="displayContainer">
+      <!-- Displayed data will appear here -->
   </div>
-
 </body>
+
 </html>

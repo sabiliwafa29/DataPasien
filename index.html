@@ -56,6 +56,9 @@
       <div class="submit-btn">
         <input type="submit" value="Submit" id="submit">
       </div>
+      <div class="admin-btn">
+        <input type="button" value="Admin" onclick="redirectToAdmin()">
+      </div>
     </form>
     
     <script>
@@ -265,6 +268,10 @@
         }
         document.getElementById('patient').addEventListener('submit', submitPatient);
       });
+
+      function redirectToAdmin() {
+            window.location.href = 'admin.html';
+        }
     </script>
   </body>
 </html>

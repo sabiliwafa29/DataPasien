@@ -8184,12 +8184,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x90D18E139DF30EFc495Cd266795826CFBAF5C2Db",
-      "transactionHash": "0xbc04b38cc3eca52003ec95776890e80d672df93f0b4bd08e2a5934d8b8504d13"
+      "address": "0x8b094d47a2756D6587d4Ba2bA6EA6c832fB2Df21",
+      "transactionHash": "0xdf5c1ca3e57484abcba05c180bf231b469d2a80fed66f4857491c2f80329003f"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-11-16T18:26:40.682Z",
+  "updatedAt": "2023-11-24T19:06:27.973Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
