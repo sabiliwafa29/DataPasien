@@ -7,7 +7,8 @@
     <title>Retrieve Medical Record</title>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.3/dist/web3.min.js"></script>
     <script>
-        const contractAddress = '0x90D18E139DF30EFc495Cd266795826CFBAF5C2Db';
+        // Update the contract address and ABI
+        const contractAddress = 'YOUR_CONTRACT_ADDRESS';
         const contractABI = [
     {
       "anonymous": false,
@@ -145,17 +146,6 @@
                     console.error('Error retrieving data:', error);
                 }
             };
-            function displayMedicalRecord(data) {
-                const displayContainer = document.getElementById('displayContainer');
-                displayContainer.innerHTML = ''; // Clear previous data
-
-                const keys = Object.keys(data);
-                for (const key of keys) {
-                    const paragraph = document.createElement('p');
-                    paragraph.innerHTML = `<strong>${key}:</strong> ${data[key]}`;
-                    displayContainer.appendChild(paragraph);
-                }
-            }
         };
     </script>
 </head>
@@ -165,10 +155,6 @@
     <label for="addressInput">Enter Patient Address:</label>
     <input type="text" id="addressInput" placeholder="Ethereum Address">
     <button id="retrieveButton">Retrieve Medical Record</button>
-
-    <div id="displayContainer">
-      <!-- Displayed data will appear here -->
-  </div>
 </body>
 
 </html>
