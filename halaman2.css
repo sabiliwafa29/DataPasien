@@ -28,7 +28,7 @@ body {
   padding: 20px;
   background: #1BB295;
 }
-.container {
+.container, .txhash, #medicalDataDetails {
   position: relative;
   max-width: 700px;
   width: 100%;

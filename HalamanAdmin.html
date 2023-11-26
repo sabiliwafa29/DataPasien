@@ -55,12 +55,9 @@
           <input type="submit" value="Submit" id="submit">
         </div>
       </form>
-    </section>
-
-    <!-- Display section for retrieved data -->
-    <section class="container" id="displayData">
-      <header><h2>Retrieved Data</h2></header>
-      <div id="displayMedicalData"></div>
+      <div class="submit-btn">
+        <input type="button" value="Admin" onclick="redirectToAdmin()">
+      </div>
     </section>
 
     <script>
@@ -214,6 +211,17 @@
           const onsetDate = Date.parse(document.getElementById("onsetDate").value) / 1000;
           const diseaseDescription = document.getElementById("diseaseDescription").value;
 
+          // Store the data in local storage
+          localStorage.setItem("medicalData", JSON.stringify({
+            medicalId,
+            weight,
+            height,
+            diseaseName,
+            bloodType,
+            onsetDate,
+            diseaseDescription
+          }));
+
           // Send a transaction to the smart contract
           try {
             const accounts = await web3.eth.getAccounts();
@@ -225,38 +233,13 @@
             alert("Ada error, cek console!");
             console.log("Transaction Error:", error);
           }
-          // Display the retrieved data
-          displayRetrievedData();
         }
-
-        function displayRetrievedData() {
-          // Get values from the form
-          const medicalId = document.getElementById("medicalId").value;
-          const weight = document.getElementById("weight").value;
-          const height = document.getElementById("height").value;
-          const diseaseName = document.getElementById("diseaseName").value;
-          const bloodType = document.getElementById("bloodType").value;
-          const onsetDate = document.getElementById("onsetDate").value;
-          const diseaseDescription = document.getElementById("diseaseDescription").value;
-
-          // Display the retrieved data
-          const displayDiv = document.getElementById("displayMedicalData");
-          displayDiv.innerHTML = `
-            <p><strong>Identitas Laporan Medis:</strong> ${medicalId}</p>
-            <p><strong>Berat Badan:</strong> ${weight}</p>
-            <p><strong>Tinggi Badan:</strong> ${height}</p>
-            <p><strong>Nama Penyakit:</strong> ${diseaseName}</p>
-            <p><strong>Golongan Darah:</strong> ${bloodType}</p>
-            <p><strong>Awal Sakit:</strong> ${onsetDate}</p>
-            <p><strong>Deskripsi Penyakit:</strong> ${diseaseDescription}</p>
-          `;
-
-          // Show the display section
-          document.getElementById("displayData").style.display = "block";
-        }
-
         document.getElementById('medical').addEventListener('submit', submitMedical);
       });
+      
+      function redirectToAdmin() {
+        window.location.href = 'coba.html';
+      }
     </script>
   </body>
 </html>
