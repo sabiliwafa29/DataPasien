@@ -83,160 +83,159 @@
         }
 
         // Replace with your contract address and ABI
-        const contractAddress = "0xb86C3203878abDe1E21DAD7B0ddc7d1842cE9f9C";
+        const contractAddress = "0x766ECA5DbE5Cb8Fb739bBA5BdFa340B6735dB9Ab";
         const contractABI = [
-         
+    {
+      "inputs": [
         {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "name": "patients",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "phoneNumber",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "emailAddress",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "password",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "dateOfBirth",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "addresst",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "gender",
-              "type": "string"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function",
-          "constant": true
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "phoneNumber",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "emailAddress",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "password",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "dateOfBirth",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "addresst",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "gender",
-              "type": "string"
-            }
-          ],
-          "name": "registerPatient",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            }
-          ],
-          "name": "getPatientById",
-          "outputs": [
-            {
-              "components": [
-                {
-                  "internalType": "uint256",
-                  "name": "id",
-                  "type": "uint256"
-                },
-                {
-                  "internalType": "string",
-                  "name": "phoneNumber",
-                  "type": "string"
-                },
-                {
-                  "internalType": "string",
-                  "name": "emailAddress",
-                  "type": "string"
-                },
-                {
-                  "internalType": "string",
-                  "name": "password",
-                  "type": "string"
-                },
-                {
-                  "internalType": "string",
-                  "name": "dateOfBirth",
-                  "type": "string"
-                },
-                {
-                  "internalType": "string",
-                  "name": "addresst",
-                  "type": "string"
-                },
-                {
-                  "internalType": "string",
-                  "name": "gender",
-                  "type": "string"
-                }
-              ],
-              "internalType": "struct MyContract.Patient",
-              "name": "",
-              "type": "tuple"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function",
-          "constant": true
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
         }
-        ];
+      ],
+      "name": "patients",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "phoneNumber",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "emailAddress",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "password",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "dateOfBirth",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "addresst",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "gender",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "phoneNumber",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "emailAddress",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "password",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "dateOfBirth",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "addresst",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "gender",
+          "type": "string"
+        }
+      ],
+      "name": "registerPatient",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getPatientById",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "phoneNumber",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "emailAddress",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "password",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "dateOfBirth",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "addresst",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "gender",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct MyContract.Patient",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    }
+  ];
 
         const contract = new web3.eth.Contract(contractABI, contractAddress);
 

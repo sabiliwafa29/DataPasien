@@ -56,6 +56,13 @@
         </div>
       </form>
     </section>
+
+    <!-- Display section for retrieved data -->
+    <section class="container" id="displayData">
+      <header><h2>Retrieved Data</h2></header>
+      <div id="displayMedicalData"></div>
+    </section>
+
     <script>
       // Wait for the page to load before executing JavaScript
       document.addEventListener('DOMContentLoaded', async function () {
@@ -78,7 +85,7 @@
         }
 
         // Replace with your contract address and ABI
-        const contractAddress = '0x90D18E139DF30EFc495Cd266795826CFBAF5C2Db';
+        const contractAddress = '0xfaacA99d1c196c435Af95bAA5f55f30fF9479dC0';
         const contractABI = [
     {
       "anonymous": false,
@@ -146,8 +153,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -219,7 +225,36 @@
             alert("Ada error, cek console!");
             console.log("Transaction Error:", error);
           }
+          // Display the retrieved data
+          displayRetrievedData();
         }
+
+        function displayRetrievedData() {
+          // Get values from the form
+          const medicalId = document.getElementById("medicalId").value;
+          const weight = document.getElementById("weight").value;
+          const height = document.getElementById("height").value;
+          const diseaseName = document.getElementById("diseaseName").value;
+          const bloodType = document.getElementById("bloodType").value;
+          const onsetDate = document.getElementById("onsetDate").value;
+          const diseaseDescription = document.getElementById("diseaseDescription").value;
+
+          // Display the retrieved data
+          const displayDiv = document.getElementById("displayMedicalData");
+          displayDiv.innerHTML = `
+            <p><strong>Identitas Laporan Medis:</strong> ${medicalId}</p>
+            <p><strong>Berat Badan:</strong> ${weight}</p>
+            <p><strong>Tinggi Badan:</strong> ${height}</p>
+            <p><strong>Nama Penyakit:</strong> ${diseaseName}</p>
+            <p><strong>Golongan Darah:</strong> ${bloodType}</p>
+            <p><strong>Awal Sakit:</strong> ${onsetDate}</p>
+            <p><strong>Deskripsi Penyakit:</strong> ${diseaseDescription}</p>
+          `;
+
+          // Show the display section
+          document.getElementById("displayData").style.display = "block";
+        }
+
         document.getElementById('medical').addEventListener('submit', submitMedical);
       });
     </script>
