@@ -30,7 +30,7 @@
 
       // Display the retrieved data
       const displayDiv = document.getElementById("displayMedicalData");
-      displayDiv.innerHTML = `
+      displayDiv.innerHTML += `
         <p class="txhash" onclick="toggleMedicalData()"><strong>Data 1</strong></p>
         <div id="medicalDataDetails" style="display: none;">
           <p><strong>Identitas Laporan Medis:</strong> ${medicalData.medicalId}</p>
